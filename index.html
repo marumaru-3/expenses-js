@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>家計簿アプリ</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div id="next-prev-button">
+          <button id="get_before_month">◁</button>
+          <h1 id="target_month"></h1>
+          <button id="get_next_month">▷</button>
+        </div>
+      </header>
+
+      <div id="container">
+        <div id="calendar"></div>
+        <div class="price-list">
+          <div class="price-group">
+            <p class="expenditure_price">
+              <span class="title">支出</span>
+              <span class="money">0</span>円
+            </p>
+            <p class="income_price">
+              <span class="title">収入</span>
+              <span class="money">0</span>円
+            </p>
+            <p class="total_price">
+              <span class="title">合計</span>
+              <span class="money">0</span>円
+            </p>
+          </div>
+          <p class="select-date">記入日付：<span id="target_date"></span></p>
+          <ul class="tab">
+            <li class="ex"><a href="#expenditure_form">支出</a></li>
+            <li class="in"><a href="#income_form">収入</a></li>
+          </ul>
+          <div id="expenditure_form" class="input-group">
+            <div class="name">
+              <label for="expenditure_name">支払先</label>
+              <input type="text" id="expenditure_name" />
+            </div>
+            <div class="price">
+              <label for="expenditure_price">金額</label>
+              <input type="text" id="expenditure_price" />
+            </div>
+            <div class="button-group">
+              <input
+                class="add"
+                type="button"
+                id="expenditure_add"
+                value="追加"
+              />
+              <input
+                class="clear"
+                type="button"
+                id="expenditure_clear"
+                value="クリア"
+              />
+            </div>
+          </div>
+          <div id="income_form" class="input-group">
+            <div class="name">
+              <label for="income_name">収入先</label>
+              <input type="text" id="income_name" />
+            </div>
+            <div class="price">
+              <label for="income_price">金額</label>
+              <input type="text" id="income_price" />
+            </div>
+            <div class="button-group">
+              <input class="add" type="button" id="income_add" value="追加" />
+              <input
+                class="clear"
+                type="button"
+                id="income_clear"
+                value="クリア"
+              />
+            </div>
+          </div>
+          <table class="expenses">
+            <thead>
+              <tr>
+                <th>日付</th>
+                <th>支払・収入先</th>
+                <th>金額</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <footer>
+        <p>Copyright 2022 yukinaga All Right Resarved.</p>
+      </footer>
+    </div>
+
+    <script src="main.js" defer></script>
+  </body>
+</html>

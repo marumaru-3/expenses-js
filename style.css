@@ -1,0 +1,523 @@
+* {
+  box-sizing: border-box;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+}
+
+input {
+  border-radius: 0;
+  -webkit-appearance: none;
+  line-height: normal;
+}
+
+/* 全体 */
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  color: #666;
+}
+
+header,
+footer {
+  background: #67cb8c;
+}
+
+#next-prev-button {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 750px;
+  margin: auto;
+}
+
+#next-prev-button button {
+  cursor: pointer;
+  background: #fff;
+  color: #67cb8c;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+  margin: 1rem 10px;
+  transition: 0.3s;
+}
+#next-prev-button button:hover {
+  background-color: #67cb8c;
+  border-color: #fff;
+  color: #fff;
+}
+
+#target_month {
+  text-align: center;
+  font-size: 24px;
+  /* margin: 1rem 0 0; */
+  color: #fff;
+}
+
+#container {
+  width: 100%;
+  max-width: 750px;
+  margin: 20px auto;
+}
+
+/* カレンダー */
+#calendar {
+  text-align: center;
+  width: 100%;
+}
+#calendar table {
+  outline: 2px solid #ddd;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+#calendar th {
+  color: #000;
+}
+#calendar th,
+#calendar td {
+  outline: 1px solid #ddd;
+  padding: 7px;
+  text-align: center;
+  /* width: 120px; */
+}
+#calendar td {
+  cursor: pointer;
+  vertical-align: top;
+  height: 70px;
+  text-align: left;
+  box-sizing: content-box;
+}
+#calendar td.click {
+  background: #e8fff1;
+}
+
+/* 日曜日&祝日 */
+#calendar td:first-child,
+td.holiday {
+  color: red;
+}
+#calendar td span.today:first-child,
+td span.today.holiday {
+  color: #fff;
+}
+/* 土曜日 */
+#calendar td:last-child {
+  color: blue;
+}
+#calendar td span.today:last-child {
+  color: #fff;
+}
+/* 前後月の日付 */
+#calendar td.disabled {
+  color: #ccc;
+}
+/* 本日 */
+td span.today {
+  background-color: #00e056;
+  padding: 0 5px;
+}
+
+/* 家計簿との紐づけ */
+.use-money {
+  text-align: right;
+  margin: 20px 0 0;
+  color: #666;
+}
+#calendar td span,
+#calendar td p {
+  pointer-events: none;
+}
+
+#calendar .income,
+#calendar .expenditure {
+  display: block;
+  text-align: right;
+  height: 24px;
+}
+
+#calendar .income {
+  color: #00ccff;
+}
+#calendar .expenditure {
+  color: rgb(255, 45, 45);
+}
+
+/* 家計簿 */
+.price-list {
+  margin: 0 auto;
+}
+
+.price-group {
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+  padding: 20px 0;
+  border-bottom: 2px solid #ddd;
+}
+
+/* .price-group > p:first-of-type {
+  padding-left: 0;
+} */
+.price-group > p {
+  /* padding: 10px 50px; */
+  margin: 0;
+  /* border-right: 2px solid #ddd; */
+  text-align: center;
+}
+.price-group > p:last-of-type {
+  border: none;
+  /* padding-right: 0; */
+}
+
+.price-group > p .title {
+  color: rgb(133, 133, 133);
+  font-size: 18px;
+  width: 100%;
+  display: inline-block;
+}
+.price-group > .expenditure_price .title {
+  color: rgb(253, 104, 104);
+}
+.price-group > .income_price .title {
+  color: #56ddff;
+}
+
+.price-group > p .money {
+  font-size: 22px;
+}
+
+.select-date {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 25px 0;
+}
+
+.price-list table {
+  width: 100%;
+}
+
+.year-month {
+  width: 550px;
+  text-align: center;
+}
+
+.expenses tr,
+.expenses th,
+.expenses td {
+  font-size: 18px;
+  list-style-type: none;
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+  padding: 10px;
+}
+
+table.expenses {
+  border-collapse: collapse;
+  border-spacing: 0 5px;
+  margin-top: 30px;
+}
+
+.expenses tr {
+  background: #fff;
+}
+.expenses tr.income {
+  background: #e5faff;
+}
+
+.expenses th {
+  font-weight: 500;
+}
+
+.expenses td {
+  padding-left: 12px;
+}
+
+.expenses td.date {
+  padding-left: 20px;
+}
+.expenses td.price {
+  text-align: right;
+}
+.expenses td.delete-td {
+  text-align: right;
+  padding: 0;
+  height: 45px;
+}
+
+/* インプット要素 */
+/*tabの形状*/
+.tab {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px 0 25px;
+}
+.tab li a {
+  display: block;
+  margin: 0 2px;
+  padding: 12px 22px;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+.tab li.ex a:hover {
+  background: rgb(255, 45, 45);
+  color: #fff;
+}
+.tab li.in a:hover {
+  background: #00ccff;
+  color: #fff;
+}
+/*liにactiveクラスがついた時の形状*/
+.tab li.ex.active a {
+  border: 2px solid rgb(255, 45, 45);
+  padding: 10px 20px;
+  pointer-events: none;
+}
+.tab li.in.active a {
+  border: 2px solid #00ccff;
+  padding: 10px 20px;
+  pointer-events: none;
+}
+
+.input-group {
+  display: flex;
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.input-group.is-active {
+  opacity: 1;
+  position: relative;
+  visibility: visible;
+  pointer-events: all;
+  transition: 0.5s;
+}
+
+.input-group > div {
+  position: relative;
+}
+
+.input-group .name,
+.input-group .price {
+  width: 100%;
+  max-width: 250px;
+  margin-right: 20px;
+}
+.input-group label {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  font-size: 18px;
+  margin: 8px;
+  padding: 0 10px;
+  background-color: #fff;
+  -webkit-transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+  transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+}
+
+.input-group label.active {
+  top: -25px;
+  font-size: 14px;
+}
+
+.input-group input[type="text"] {
+  padding: 10px 10px 8px;
+  margin: 0;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  font-size: 18px;
+  width: 100%;
+}
+
+.input-group input[type="text"]:focus {
+  outline: none;
+}
+
+.button-group .add {
+  border: 2px solid #67cb8c;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+  color: #666;
+  font-size: 16px;
+  padding: 5px 0;
+  width: 90px;
+  transition: 0.3s;
+}
+.button-group .add:hover {
+  color: #fff;
+  background: #67cb8c;
+}
+
+.button-group .clear {
+  border: 2px solid #ff144e;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+  color: #666;
+  margin-left: 10px;
+  font-size: 16px;
+  padding: 5px 0;
+  width: 90px;
+  transition: 0.3s;
+}
+.button-group .clear:hover {
+  color: #fff;
+  background: #ff144e;
+}
+
+.expenses .delete {
+  color: #fff;
+  background: #ff144e;
+  border: 2px solid #ff144e;
+  cursor: pointer;
+  /* padding: 11px; */
+  transition: 0.3s;
+  display: inline-block;
+  height: 100%;
+}
+.expenses .delete:hover {
+  color: #ff144e;
+  background: #fff;
+}
+
+footer p {
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+}
+
+@media (max-width: 849px) {
+  #next-prev-button button {
+    padding: 1vw 4vw;
+  }
+  /* カレンダー */
+  #calendar th {
+    font-size: 2.5vw;
+  }
+  #calendar td {
+    height: 8vw;
+    font-size: 2.5vw;
+  }
+  #calendar .income,
+  #calendar .expenditure {
+    height: 3vw;
+  }
+  /* カレンダー */
+  .select-date {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 759px) {
+  #target_month {
+    font-size: 22px;
+  }
+
+  /* カレンダー */
+  #calendar th,
+  #calendar td {
+    padding: 5px;
+  }
+  /* カレンダー */
+
+  .price-group {
+    padding: 15px 0;
+  }
+  .price-group > p .title,
+  .price-group {
+    font-size: 14px;
+  }
+  .price-group > p .money {
+    font-size: 16px;
+  }
+
+  .select-date {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  .tab {
+    margin-bottom: 25px;
+    padding-left: 15px;
+    font-size: 14px;
+  }
+  .input-group {
+    display: block;
+    width: 90%;
+    margin: auto;
+  }
+  .input-group .name,
+  .input-group .price {
+    max-width: none;
+    margin-right: 0;
+  }
+  .input-group .name {
+    margin-bottom: 30px;
+  }
+  .input-group .price {
+    margin-bottom: 20px;
+  }
+  .input-group input[type="text"],
+  .input-group label {
+    font-size: 16px;
+  }
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  .button-group .add,
+  .button-group .clear {
+    font-size: 14px;
+    width: 48%;
+    margin: 0;
+  }
+
+  .expenses tr,
+  .expenses th,
+  .expenses td {
+    font-size: 14px;
+  }
+  .expenses td.name {
+    padding-right: 0;
+  }
+  .expenses td.price {
+    padding-left: 0;
+  }
+
+  footer p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 399px) {
+  .expenses td.name {
+    width: 35%;
+  }
+}
